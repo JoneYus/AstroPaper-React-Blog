@@ -1,0 +1,38 @@
+// theme.less
+.light-variable {
+    --color: red;
+    --background-color: red;
+}
+
+.dark-variable {
+    --color: #fff;
+    --background-color: #000;
+}
+
+:root { // 根样式，默认情况下调用的样式
+    .light-variable;
+}
+
+// 方法一和方法二可混用
+// 方法一：
+// css媒体特性 使用媒体查询来判断用户是否将系统的主题设置为亮色或暗色。
+@media (prefers-color-scheme: dark) {
+    :root {
+        .dark-variable;
+    }
+}
+@media (prefers-color-scheme: light) {
+    :root {
+        .dark-variable;
+    }
+}
+
+// 方法二：
+// 判断文档根对象上是否存在 user-color-scheme 属性，其是否有值为 dark ，若有则执行 .dark-variable 里定义的样式
+[user-color-scheme='dark'] {
+    .dark-variable
+}
+// 同上
+[user-color-scheme='light'] {
+    .light-variable
+}
